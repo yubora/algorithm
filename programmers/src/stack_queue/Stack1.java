@@ -18,27 +18,53 @@ import java.util.Stack;
  */
 public class Stack1 {
     public static void main(String[] args) {
-        String brackets = "()()";
+        String brackets = ")()())";
 
-        // 풀이1: 정확성 100, 효율성 0
-        String[] splited = brackets.split("");
-        Stack<String> stack = new Stack<>();
+        // 풀이3: 정확성 100, 효율성 100
+        // - String.split()을 String.toCharArray()로 변경 : String 보다 char 타입으로 가공하는 것이 속도면에서 빠름
+        // - main의 반환 타입을 맞추기 위해 일부러 불필요한 push/pop을 하다보니 효율성 문제가 생긴 것 같다.
+        //   프로그래머스 툴에서 불필요한 push/pop을 없애니 시간초과 문제가 해결 되었다.
+        char[] splited = brackets.toCharArray();
+        Stack<Character> stack = new Stack<>();
 
-        for(String next : splited) {
-            if (!stack.isEmpty()) {
-                String prev = stack.peek();
-                if (prev.equals("(") && next.equals(")")) {
-                    stack.push(next);
-                    stack.pop();
+        for(char next : splited) {
+            if (stack.isEmpty()) {
+                if (next == (')')) {
+                    System.out.println(false);
+                    break;
+                }
+                stack.push(next);
+            } else {
+                char prev = stack.peek();
+                if (prev == '(' && next== ')') {
                     stack.pop();
                 } else {
                     stack.push(next);
                 }
-            } else {
-                stack.push(next);
             }
         }
         System.out.println(stack.isEmpty());
+
+
+        // 풀이1: 정확성 100, 효율성 0
+//        String[] splited = brackets.split("");
+//        Stack<String> stack = new Stack<>();
+//
+//        for(String next : splited) {
+//            if (!stack.isEmpty()) {
+//                String prev = stack.peek();
+//                if (prev.equals("(") && next.equals(")")) {
+//                    stack.push(next);
+//                    stack.pop();
+//                    stack.pop();
+//                } else {
+//                    stack.push(next);
+//                }
+//            } else {
+//                stack.push(next);
+//            }
+//        }
+//        System.out.println(stack.isEmpty());
 
         // 풀이2: 정확성 100, 효율성 0
 //        boolean answer = false;
