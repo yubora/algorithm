@@ -14,32 +14,26 @@ import java.util.Arrays;
  */
 public class Sort1 {
     public static void main(String[] args) {
-        int[] citations = new int[]{0,1,2,3,4};
+        int[] citations = new int[]{0, 1, 2, 3, 4};
         int hIndex = 0;
 
-        Arrays.sort(citations);
+//        Arrays.sort(citations);
 
         for (int i = 1; i <= citations.length; i++) {
             // 논문 수
             int cnt = 0;
 
-            // 나머지 논문의 인용 횟수
-            int rest = 0;
-
             // i번 이상 인용된 논문
             for (int c : citations) {
                 if (i <= c) {
-                    cnt ++;
-                } else {
-                    rest ++;
+                    cnt++;
                 }
             }
 
-            if (cnt >= i && rest <= i) {
+            if (cnt >= i) {
                 hIndex = i;
             }
         }
-
 
 
         System.out.println(hIndex);
