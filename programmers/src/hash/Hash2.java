@@ -1,7 +1,6 @@
 package hash;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 /**
  * <h2>전화번호 목록</h2>
@@ -16,32 +15,43 @@ import java.util.Map;
  */
 public class Hash2 {
     public static void main(String[] args) {
-        String[] phone_book = {"123", "456", "789"};
+        String[] phone_book = {"567", "88", "12", "123", "1235"};
 
         boolean answer = true;
 
-        //Runtime 에러남
-        //매개변수 해싱 ("idx", "number")
-        Map<Integer, String> phoneBookMap = new HashMap<>();
-        for (int i = 0; i < phone_book.length; i++) {
-            phoneBookMap.put(i, phone_book[i]);
-        }
-
-        for (Integer key : phoneBookMap.keySet()) {
-            String tmp = phoneBookMap.get(key);
-            for (String target : phone_book) {
-                if (!tmp.equals(target)) {
-                    String substring = target.substring(0, tmp.length());
-                    if (tmp.equals(substring)) {
-                        answer = false;
-                        break;
-                    }
-                }
-            }
-            if (!answer) {
+        Arrays.sort(phone_book);
+        for (int i = 0; i < phone_book.length - 1; i++) {
+            String s = phone_book[i];
+            if (phone_book[i + 1].startsWith(s)) {
+                answer = false;
                 break;
             }
         }
+
+        //=========================================================
+
+        //Runtime 에러남
+        //매개변수 해싱 ("idx", "number")
+//        Map<Integer, String> phoneBookMap = new HashMap<>();
+//        for (int i = 0; i < phone_book.length; i++) {
+//            phoneBookMap.put(i, phone_book[i]);
+//        }
+//
+//        for (Integer key : phoneBookMap.keySet()) {
+//            String tmp = phoneBookMap.get(key);
+//            for (String target : phone_book) {
+//                if (!tmp.equals(target)) {
+//                    String substring = target.substring(0, tmp.length());
+//                    if (tmp.equals(substring)) {
+//                        answer = false;
+//                        break;
+//                    }
+//                }
+//            }
+//            if (!answer) {
+//                break;
+//            }
+//        }
 
         System.out.println(answer);
     }
