@@ -1,7 +1,5 @@
-package stack_queue;
+package java.stack_queue;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**

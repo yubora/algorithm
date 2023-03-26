@@ -1,4 +1,4 @@
-package exhaustive_search;
+package java.exhaustive_search;
 
 import java.util.*;
 
